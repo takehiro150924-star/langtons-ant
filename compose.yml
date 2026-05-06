@@ -1,0 +1,8 @@
+services:
+  langtons-ant:
+    build: .
+    container_name: langtons-ant
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: sh -c "g++ Langtons_ant.cpp -o Langtons_ant && ./Langtons_ant"
