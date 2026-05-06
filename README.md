@@ -1,76 +1,90 @@
 # Langton's Ant
 
-This repository contains a C++ implementation of Langton's Ant.
+このリポジトリは、C++で実装した Langton's Ant（ラングトンのアリ）のシミュレーションです。
 
-## Overview
+## 概要
 
-Langton's Ant is a simple cellular automaton.
-An ant moves on a grid according to simple rules.
+Langton's Ant は、単純なルールで動くセル・オートマトンの一種です。
 
-Rules:
+アリは2次元グリッド上を移動し、現在いるマスの色に応じて向きを変え、マスの色を反転させます。
 
-1. If the ant is on a white cell:
-   - Turn right
-   - Change the cell to black
-   - Move forward one cell
+## ルール
 
-2. If the ant is on a black cell:
-   - Turn left
-   - Change the cell to white
-   - Move forward one cell
+アリの行動ルールは以下の通りです。
 
-## Files
+1. 現在のマスが白の場合
+   - 右に90度回転する
+   - 現在のマスを黒に変える
+   - 1マス前に進む
+
+2. 現在のマスが黒の場合
+   - 左に90度回転する
+   - 現在のマスを白に変える
+   - 1マス前に進む
+
+## ファイル構成
 
 ```text
-Langtons_ant.cpp  Main C++ source code
-Dockerfile        Docker environment definition
-compose.yml       Docker Compose configuration
-.gitignore        Files ignored by Git
+Langtons_ant.cpp  Langton's Ant のメインプログラム
+Dockerfile        Docker環境を作成するための設定ファイル
+compose.yml       Docker Composeで実行するための設定ファイル
+.gitignore        Gitで管理しないファイルを指定する設定ファイル
 ```
 
-## Build and Run on Windows
+## 実行方法
 
-If you have g++ installed, run:
+### g++で実行する場合
+
+Windows環境で g++ が使用できる場合、以下のコマンドでコンパイルします。
 
 ```powershell
 g++ Langtons_ant.cpp -o Langtons_ant.exe
+```
+
+実行します。
+
+```powershell
 .\Langtons_ant.exe
 ```
 
-## Run with Docker
+## Dockerで実行する場合
 
-If you have Docker installed, run:
+Dockerが使用できる環境では、以下のコマンドで実行できます。
 
 ```powershell
 docker compose up --build
 ```
 
-## Output
+## 出力
 
-The program outputs a BMP image:
+プログラムを実行すると、以下の画像ファイルが生成されます。
 
 ```text
 langtons_ant_result.bmp
 ```
 
-White cells represent unvisited or white cells.
-Black cells represent flipped cells.
-The red cell represents the final ant position.
-
-## Purpose
-
-This project is for understanding the basic structure of agent-based simulation:
+画像では、以下のように表示されます。
 
 ```text
-Agent observes the environment
-↓
-Agent changes its direction based on rules
-↓
-Agent updates the environment
-↓
-Agent moves
-↓
-Repeat
+白いマス：白状態のセル
+黒いマス：黒状態のセル
+赤いマス：アリの最終位置
 ```
 
-This structure is related to termite or swarm robot simulations.
+## この実装で学べること
+
+このプログラムでは、以下のようなエージェントシミュレーションの基本構造を学ぶことができます。
+
+```text
+エージェントが環境を見る
+↓
+ルールに従って行動を決める
+↓
+環境を書き換える
+↓
+エージェントが移動する
+↓
+これを繰り返す
+```
+
+この構造は、シロアリシミュレーションや群ロボットシミュレーションの基礎的な考え方にもつながります。
